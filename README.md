@@ -62,10 +62,12 @@ mean of x
    1500.2 
    
 ```
+
 **One Sample t test for Lot3**
 
 Conclusion: Mean of sample and poulation data are same for lot3.
 
+```
 	One Sample t-test
 
 data:  lot3$PSI
@@ -76,7 +78,41 @@ alternative hypothesis: true mean is not equal to 1500
 sample estimates:
 mean of x 
   1496.14 
+```
 
 ## Study Design: MechaCar vs Competition.
 
-Assume other parameters which might affect the car's mpg.
+NULL HYPOTHESIS is that the means of all groups i.e Mecha cars and its competition are the same.
+ALTERNATIVE HYPOTHESIS : Atleast one of the means is different from all the other groups.
+We'll use the ANOVA test for this case study.
+
+**the aov() function expects that all of the observations and grouping information are contained within a single data frame.**
+For the purpose of our design, we are going to get sales data from a dealership that has sales records for MtCars as well as its competition. Our dataset would contain the following columns. 
+
+- Highway_mpg	
+- city_mpg	
+- cost 	
+- safety_rating	
+- sales
+- Car company (Mtcar or some competition company)
+
+We are first going to filter all the mechacars records into a new dataset and run ANOVA test as follows:
+
+summary(aov(sales ~ Highway_mpg + city_mpg +  cost + safety_rating (foctored into levels), data=mtcars_filt))
+
+We'll get four separet rows for each of our independent variables telling the p-values. Any p-value greater than 0.05 would mean that we would fail to reject our Null hypothesis and value less than 0.05 would mean that we would accept our alternative hypothesis.
+
+```
+            Df Sum Sq Mean Sq F value   Pr(>F)    
+cyl          2 104031   52015   36.18 1.32e-08 ***
+Residuals   29  41696    1438 
+```
+We can run a similar ANOVA test on a different dataset containing data for all the competitor cars. That ways we can compare our results for Mtcars against the competition. 
+
+We can also run multiple linear regression on dataset for mechacars to predict future sales using Multiple Linear Regression. We'll use the following formula:
+
+lm(qsec ~ mpg + disp + drat + wt + hp,data=mtcars) #generate multiple linear regression model
+
+After comparing each of our p-values we'll evaluate the r-squared value of the model to determine if the model sufficiently predicts our dependent variable.
+
+
