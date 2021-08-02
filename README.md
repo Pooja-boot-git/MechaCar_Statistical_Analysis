@@ -81,7 +81,7 @@ mean of x
 
 ## Study Design: MechaCar vs Competition.
 
-### We'll use the ANOVA statistical test for this case study.
+### We'll use the ANOVA statistical test to study the sales metric of mechacars.
 
 * NULL HYPOTHESIS: Means of all groups i.e Mecha cars and its competitors are the same.
 * ALTERNATIVE HYPOTHESIS : Atleast one of the means is different from all the other groups.
