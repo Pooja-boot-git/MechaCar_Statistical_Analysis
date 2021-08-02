@@ -11,12 +11,16 @@ summary(lm( mpg ~ vehicle_length + vehicle_weight + spoiler_angle + ground_clear
 
 #Deliverable 2: Create summary for the suspension coil data
 suspension_coil <- read.csv("Suspension_Coil.csv", check.names = FALSE, stringsAsFactors = FALSE)
-lot_summary <- suspension_coil %>% group_by(Manufacturing_Lot) %>% summarize(Mean=mean(PSI), Median = median(PSI), Variance = var(PSI), SD = sd(PSI), .groups = 'keep') #create summary table
+
+# mean,median, variance and sd calculated for all lots
 total_summary <- suspension_coil %>% summarize(Mean=mean(PSI), Median = median(PSI), Variance = var(PSI), SD = sd(PSI), .groups = 'keep') #create summary table
 
-subset(suspension_coil, suspension_coil$Manufacturing_Lot=="Lot3")%>%summarize(mean(PSI), min(PSI), max(PSI))
-lot_summary
-total_summary
+# mean,median, variance and sd calculated for each of the three lots
+lot_summary <- suspension_coil %>% group_by(Manufacturing_Lot) %>% summarize(Mean=mean(PSI), Median = median(PSI), Variance = var(PSI), SD = sd(PSI), .groups = 'keep') #create summary table
+
+total_summary # view data
+lot_summary # view data
+
 
 #Deliverable 3: T-Tests on Suspension Coils 
 # 1. for all the lots
